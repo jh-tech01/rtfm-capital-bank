@@ -1,0 +1,438 @@
+/* Enhanced Preloader Styles */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 30% 50%, #667eea, #764ba2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#preloader.hide-preloader {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.preloader-container {
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+
+/* Animated background circles */
+.preloader-container::before,
+.preloader-container::after {
+  content: '';
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  animation: pulse 3s infinite;
+}
+
+.preloader-container::before {
+  top: -100px;
+  left: -100px;
+}
+
+.preloader-container::after {
+  bottom: -100px;
+  right: -100px;
+  animation-delay: 1.5s;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.1;
+  }
+}
+
+.rtfm-preloader {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+  position: relative;
+  z-index: 10;
+}
+
+.rtfm-letter {
+  font-size: 6rem;
+  font-weight: 800;
+  color: white;
+  text-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  animation: letterFloat 2s infinite ease-in-out;
+  display: inline-block;
+  transform-origin: center;
+  position: relative;
+}
+
+/* Individual letter animations */
+.rtfm-letter.r {
+  animation: floatR 2s infinite ease-in-out;
+  color: #FF6B6B;
+}
+.rtfm-letter.t {
+  animation: floatT 2s infinite ease-in-out;
+  color: #4ECDC4;
+}
+.rtfm-letter.f {
+  animation: floatF 2s infinite ease-in-out;
+  color: #45B7D1;
+}
+.rtfm-letter.m {
+  animation: floatM 2s infinite ease-in-out;
+  color: #96CEB4;
+}
+
+/* Different floating patterns for each letter */
+@keyframes floatR {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  25% { transform: translateY(-25px) rotate(-5deg); }
+  75% { transform: translateY(10px) rotate(3deg); }
+}
+
+@keyframes floatT {
+  0%, 100% { transform: translateY(0) scale(1); }
+  33% { transform: translateY(-30px) scale(1.1); }
+  66% { transform: translateY(5px) scale(0.95); }
+}
+
+@keyframes floatF {
+  0%, 100% { transform: translateY(0) skew(0deg); }
+  40% { transform: translateY(-20px) skew(5deg); }
+  80% { transform: translateY(10px) skew(-5deg); }
+}
+
+@keyframes floatM {
+  0%, 100% { transform: translateY(0) rotateY(0deg); }
+  50% { transform: translateY(-25px) rotateY(180deg); }
+}
+
+/* Glowing effect on hover */
+.rtfm-letter:hover {
+  filter: brightness(1.2);
+  text-shadow: 0 0 20px currentColor;
+}
+
+.preloader-subtitle {
+  font-size: 1.8rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 40px;
+  font-weight: 300;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 10;
+  animation: subtitleGlow 2s infinite;
+}
+
+@keyframes subtitleGlow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.8), 0 0 30px rgba(102, 126, 234, 0.5);
+  }
+}
+
+.preloader-bar {
+  width: 350px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 10px;
+  margin: 30px auto;
+  overflow: hidden;
+  position: relative;
+  z-index: 10;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.preloader-progress {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    #FF6B6B, 
+    #4ECDC4, 
+    #45B7D1, 
+    #96CEB4,
+    #FF6B6B
+  );
+  background-size: 300% 100%;
+  border-radius: 10px;
+  animation: progressLoad 2.5s infinite linear, gradientShift 3s infinite linear;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@keyframes progressLoad {
+  0% {
+    width: 0%;
+    left: 0;
+  }
+  50% {
+    width: 100%;
+    left: 0;
+  }
+  100% {
+    width: 100%;
+    left: 100%;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 300% 50%;
+  }
+}
+
+.preloader-message {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1rem;
+  margin-top: 30px;
+  font-weight: 300;
+  position: relative;
+  z-index: 10;
+  animation: messagePulse 2s infinite;
+}
+
+@keyframes messagePulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+body {
+  margin: 0;
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Preloader Styles */
+#preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  transition: opacity 0.8s ease-out, visibility 0.8s ease-out;
+}
+
+#preloader.hide-preloader {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.preloader-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.rtfm-preloader {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.rtfm-letter {
+  font-size: 5rem;
+  font-weight: 700;
+  color: white;
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.2);
+  animation: bounceLetter 1.5s infinite ease-in-out;
+  display: inline-block;
+  transform-origin: center;
+}
+
+.rtfm-letter.r { animation-delay: 0s; }
+.rtfm-letter.t { animation-delay: 0.1s; }
+.rtfm-letter.f { animation-delay: 0.2s; }
+.rtfm-letter.m { animation-delay: 0.3s; }
+
+@keyframes bounceLetter {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-30px) scale(1.1);
+  }
+}
+
+/* Letter-specific colors on hover/bounce */
+.rtfm-letter.r { color: #FF6B6B; }
+.rtfm-letter.t { color: #4ECDC4; }
+.rtfm-letter.f { color: #45B7D1; }
+.rtfm-letter.m { color: #96CEB4; }
+
+.preloader-subtitle {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 30px;
+  font-weight: 300;
+  letter-spacing: 2px;
+  animation: fadeInOut 2s infinite;
+}
+
+@keyframes fadeInOut {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+
+.preloader-bar {
+  width: 300px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  margin: 20px auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.preloader-progress {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #FF6B6B, #4ECDC4, #45B7D1, #96CEB4);
+  border-radius: 10px;
+  animation: progressLoad 2.5s infinite ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+@keyframes progressLoad {
+  0% {
+    width: 0%;
+    left: 0;
+  }
+  50% {
+    width: 100%;
+    left: 0;
+  }
+  100% {
+    width: 100%;
+    left: 100%;
+  }
+}
+
+.preloader-message {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  margin-top: 20px;
+  animation: slideUp 2s infinite;
+}
+
+@keyframes slideUp {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .rtfm-letter {
+    font-size: 3.5rem;
+  }
+  
+  .preloader-subtitle {
+    font-size: 1.2rem;
+  }
+  
+  .preloader-bar {
+    width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rtfm-letter {
+    font-size: 2.5rem;
+  }
+  
+  .preloader-bar {
+    width: 200px;
+  }
+}
+/* Rotating bank icon */
+.bank-icon {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: white;
+  border-radius: 50%;
+  animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .rtfm-letter {
+    font-size: 4rem;
+  }
+  
+  .preloader-subtitle {
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+  }
+  
+  .preloader-bar {
+    width: 280px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rtfm-letter {
+    font-size: 3rem;
+    gap: 10px;
+  }
+  
+  .preloader-bar {
+    width: 220px;
+  }
+  
+  .preloader-subtitle {
+    font-size: 1.2rem;
+  }
+}
