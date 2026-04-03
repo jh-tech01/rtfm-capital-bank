@@ -1,14 +1,16 @@
 {
   "name": "rtfm-capital-bank",
   "version": "1.0.0",
-  "description": "RTFM Capital Bank - Full Stack Banking Application",
   "scripts": {
-    "client": "cd frontend && npm start",
-    "server": "cd backend && npm run dev",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "install-all": "npm install && cd backend && npm install && cd ../frontend && npm install"
+    "dev": "npm run dev --workspace=backend",
+    "build": "npm run build --workspace=frontend",
+    "start": "npm run start --workspace=backend"
   },
-  "devDependencies": {
-    "concurrently": "^7.6.0"
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "engines": {
+    "node": "18.x"
   }
 }
