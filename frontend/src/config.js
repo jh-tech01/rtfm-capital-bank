@@ -3,7 +3,7 @@ const config = {
     API_URL: 'http://localhost:5000/api'
   },
   production: {
-    API_URL: process.env.REACT_APP_API_URL || 'https://your-backend-url.onrender.com/api'
+    API_URL: process.env.REACT_APP_API_URL || 'https://rtfm-capital-bank.onrender.com'
   }
 };
 
